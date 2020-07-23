@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-You can call me Ahab.
+I'm Ahab.
 
 ### Some of My Blogs
 
