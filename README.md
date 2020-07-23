@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-I'm Gengkun He, you can call me Ahab.
+You can call me Ahab.
 
 ### Some of My Blogs
 
