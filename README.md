@@ -4,6 +4,7 @@ I'm ahabhgk.
 
 ### 🤩 Some of My Blogs
 
+- [Vue3 Compat](https://ahabhgk.github.io/blogs/vue3-compat)
 - [Let's build a Vue3 runtime](https://ahabhgk.github.io/blogs/let-us-build-a-vue3-runtime)
 - [Vue Reactivity in Depth](https://ahabhgk.github.io/blogs/vue-reactivity-in-depth)
 - [co 与异步的一些思考](https://ahabhgk.github.io/blogs/co-source-code-and-some-thoughts-on-asynchrony)
