@@ -1,4 +1,4 @@
-<h2 align="center">Hello! I'm Ahab. <img src="https://github.com/ahabhgk/ahabhgk/blob/master/assets/hi.gif" width="30px"></h2>
+<h2 align="center"><img src="https://github.com/ahabhgk/ahabhgk/blob/master/assets/hi.gif" width="30px"> Hello! I'm Ahab.</h2>
 <p align="center">
   <a href="https://ahabhgk.github.io">Blog</a> -
   <a href="https://twitter.com/ahabhgk">Twitter</a>
