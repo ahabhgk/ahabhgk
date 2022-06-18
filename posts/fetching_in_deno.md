@@ -13,7 +13,7 @@ Deno 主要分为三个部分：
 
 第二部分是 core，主要依赖了 rusty_v8。rusty_v8 是使用 Rust 对 v8 引擎做的一层 binding，基本就是直接调用 v8 的 API，并没有过多的封装，提供好用的封装则是在 core 这里做的；然后著名的事件循环也是 core 这里实现的，但并没有完全实现，熟悉 Rust Async 的同学应该知道 Rust 中的异步 API 实现分为两部分：一部分是实现 Future trait 的 poll 方法，另一部分是实现 executor，core 这里相当于只实现了 poll 方法，executor 可以使用 tokio、smol 等库，core 这里并没有直接依赖 tokio，但其他调用 core 的地方都是用的 tokio 作为 executor 的；最后 core 实现了 Rust 侧和 JS 侧通信的方法：ops，Rust 这里将 JS 要用的 ops 注册上，JS 就可以通过 opSync 进行同步调用或 opAsync 进行异步调用，传递的数据通过 serde_v8 进行序列化与反序列化，可以理解为是一种 RPC。
 
-![现在 libdeno 可以改成 rusty_v8 了](./images/schematic_v0.2.png)
+![现在 libdeno 可以改成 rusty_v8 了](./fetching_in_deno/schematic_v0.2.png)
 
 第三部分是 runtime，这里依赖 core 实现 Deno 的 JS 执行环境和所有有关操作系统的 ops 和 JS 封装，比如 os、fs、http、process 等，其他的 ops 比如 fetch、timers、net、webgpu 等则单独放到了 ext 中，Rust 代码在 cli 中进行注册，通过 JS 进行调用。
 
@@ -21,7 +21,7 @@ Deno 主要分为三个部分：
 
 Deno 中的很多 API 会根据 web 的标准进行实现，所以你的有些代码即可以跑在 Deno 上也可以跑在浏览器上，当然这只是美好的愿景，web 标准并不是那么好实现的，Github 上有专门的 web platform tests，简称 wpt，用来测试是否符合规范，Deno 也只通过了部分测试，Rust 编写的浏览器引擎 Servo 的 wpt 的 TODO 只完成三分之一。
 
-![Servo wpt](./images/servo_wpt.png)
+![Servo wpt](./fetching_in_deno/servo_wpt.png)
 
 同样 Deno 实现的有些 API 细节上也有些不符标准的，比如 fetch 中对于 http header value 的实现，我的 [PR](https://github.com/denoland/deno/pull/12244) 也是这样来的。
 
