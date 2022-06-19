@@ -9,7 +9,7 @@ publish_date: 2022-06-18
 
 带来不好的用户体验的最快方式是在组件中获取数据，首先看以下这段很常见的代码有什么问题。
 
-```js
+```jsx
 function Root() {
   // 请求的发出 + 请求结果的读取
   const user = useFetch(url)
@@ -32,7 +32,7 @@ function Root() {
 
 首先看下“fetch-then-render（读取到全部请求结果之后渲染）”的写法，将请求的发出尽可能的提前，尽早开始获取数据，解耦了请求的发出和请求结果的读取，但全部请求结果（user、sales）的读取都需要在 Root 中维护，随着复杂度的增高这种方法的缺点就会越加明显。
 
-```js
+```jsx
 // 请求的发出（initiate fetches）
 const promise = fetchLoader()
 
@@ -61,7 +61,7 @@ function Root() {
 
 然后是“render-as-you-fetch（发送请求之后渲染）”的写法，有了 Suspense 我们不必等到全部请求都有结果后才开始渲染，在 sales 的请求还没有结果时 React 就会尝试渲染 Sales 组件，Sales 组件中对 sales 请求结果读取失败后会抛出一个 promise，告诉 React 渲染 fallback 组件。
 
-```js
+```jsx
 // 请求的发出（initiate fetches）
 const resource = fetchLoader() // resouce 不是一个 promise，而是一个支持 Suspense 的特殊对象
 
@@ -137,7 +137,7 @@ Remix 提供的 `deferred API` 可以开启 Streaming 模式，并通过 `await`
 
 当组件的 loader 如下时，gists、pokemon、catfacts 的数据传给 deferred 一个 promise 时，表示全部使用 streaming 传输，这三个数据的展示在没有获取完所有数据时会显示 fallback 组件（Loading）。
 
-```js
+```ts
 export const loader: LoaderFunction = async () => {
   const [gists, pokemon, catfacts] = [
     fetchGists(),
@@ -155,7 +155,7 @@ export const loader: LoaderFunction = async () => {
 
 当组件的 loader 如下时，pokemon 的数据比较重要，传给 deferred 是真正的结果而不是一个 promise 时，表示 pokemon 的数据会写到 SSR 生成的 html 上，而另外两个数据仍然使用 streaming 传输，pokemon 数据的展示会直出，没有 Loading，另外两个数据的展示在则会显示 Loading。
 
-```js
+```ts
 export const loader: LoaderFunction = async () => {
   const [gists, pokemon, catfacts] = [
     fetchGists(),
